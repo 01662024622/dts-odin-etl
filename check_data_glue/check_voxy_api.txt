@@ -1,0 +1,51 @@
+#--------------------Check ----------------------------------#
+
+SELECT count(distinct voxy.id) FROM dts_odin_tu_hoc.voxy_log_api voxy
+inner join tig_advisor.student_contact sc
+on voxy.email = sc.user_name
+where voxy.total_activities_completed is not null
+and voxy.total_activities_completed > 0
+and voxy.total_hours_studied is not null
+and voxy.total_hours_studied > 0.0
+
+
+
+#----------------------------------------------------------#
+
+# chao mung thanh cong
+
+
+SELECT adc.*, scp.contact_id  FROM callcenter.advisorcall adc
+left join tig_advisor.student_contact_phone scp
+ on CONCAT('0', CAST(adc.phonenumber AS varchar(10))) = scp.phone
+where adc.ipphone in (SELECT ip_phone FROM callcenter.advisor_ip_phone)
+and adc.device = '3CX'
+and adc.status = 'ANSWER'
+and adc.answertime > 30
+limit 10;
+
+
+
+SELECT * FROM callcenter.advisorcall adc
+left join tig_advisor.student_contact_phone p
+on CONCAT('0', CAST(adc.phonenumber AS varchar(10))) = p.phone
+where p.contact_id = '20161002012106428'
+
+
+;
+DROP TABLE IF EXISTS public.temp_ls_rating_3cx_v1
+
+
+
+-- check rating caresoft
+SELECT  ticket_id, created_at, cast(created_at as timestamp) as created_at_t FROM "check_ratting_caresoft"."ticket_log"
+order by created_at_t desc
+limit 10;
+
+
+
+SELECT * FROM "nvn_knowledge"."mapping_lo_student_history"
+where student_id = 46706
+and learning_object_id = 65
+order by created_date_id
+limit 10;

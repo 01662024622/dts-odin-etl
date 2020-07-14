@@ -1,0 +1,10 @@
+
+
+ssh -i my_key_file_name -nNT -g -R :9001:10.0.7.102:9001 glue@ec2-13-229-65-142.ap-southeast-1.compute.amazonaws.com
+
+ssh -i my_key_file_name glue@ec2-54-169-89-160.ap-southeast-1.compute.amazonaws.com -t gluepython /home/glue/scripts/datashine/main.py
+----------------{
+"level_code = basic" => level_id = 1
+
+
+}

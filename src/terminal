@@ -1,0 +1,1 @@
+ssh -i my_key_file_name glue@ec2-18-138-242-190.ap-southeast-1.compute.amazonaws.com -t gluepython /home/glue/scripts/datashine/src/student_status_L3130/student_history/kich_hoat/job_L3000_A108_het_han_su_dung.py
